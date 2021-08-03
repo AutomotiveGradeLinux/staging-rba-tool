@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rbaEditorModel" nsURI="http://www.denso.com/ict/rbatooleditor"
+    nsPrefix="rbaEditorModel">
+  <eClassifiers xsi:type="ecore:EClass" name="TopLevel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" upperBound="-1"
+        eType="ecore:EClass platform:/resource/rba.model.core/model/rbacore.ecore#//Project"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
+        eType="#//Import" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packages" upperBound="-1"
+        eType="ecore:EClass platform:/resource/rba.model.core/model/rbacore.ecore#//Package"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Import">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CTag" eSuperTypes="platform:/resource/rba.model.core/model/rbacore.ecore#//Tag"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MemberFeatureReference" eSuperTypes="platform:/resource/rba.model.core/model/rbacore.ecore#//ObjectReference">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" upperBound="-1"
+        eType="ecore:EClass platform:/resource/rba.model.core/model/rbacore.ecore#//ObjectReference"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="view" nsURI="http://www.denso.com/ict/rba/view" nsPrefix="RbaView">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="RbaCore" value="../../rba.model.core/model/rbacore.ecore#/"/>
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewContent" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//Content">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.CONTENT;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" upperBound="-1" eType="#//SizeIdentifier"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewContentSet" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//ContentSet">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SET_OF_CONTENT;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewContentState" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//ContentState">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.CONTENT_STATE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LayoutManager" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="collectLeafArea" ordered="false" upperBound="-1" eType="#//Area">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AlignedLayout" abstract="true" eSuperTypes="#//LayoutManager">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="collectLeafArea" ordered="false" upperBound="-1" eType="#//Area">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Area> areas = new java.util.HashSet&lt;Area>();&#xD;&#xA;for (Area area : getSubarea()) {&#xD;&#xA;    areas.addAll(area.collectLeafAllocatable().stream().map(allocatable -> (Area) allocatable).collect(java.util.stream.Collectors.toList()));&#xD;&#xA;}&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Area>(areas);"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subarea" upperBound="-1"
+        eType="#//Area">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basePoint" eType="#//BasePoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VerticalLayout" eSuperTypes="#//AlignedLayout">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HorizontalLayout" eSuperTypes="#//AlignedLayout">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FixedPositionLayout" eSuperTypes="#//LayoutManager">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="collectLeafArea" ordered="false" upperBound="-1" eType="#//Area">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Area> areas = new java.util.HashSet&lt;Area>();&#xD;&#xA;for (PositionContainer pc : getSubAreaPosition()) {&#xD;&#xA;    areas.addAll(pc.getArea().collectLeafAllocatable().stream().map(allocatable -> (Area) allocatable).collect(java.util.stream.Collectors.toList()));&#xD;&#xA;}&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Area>(areas);"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subAreaPosition" upperBound="-1"
+        eType="#//PositionContainer" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PositionContainer">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basePoint" eType="#//BasePoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="area" lowerBound="1" eType="#//Area"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offset" upperBound="-1"
+        eType="#//Offset" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Display" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//PackagableElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="#//CompositeArea"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" lowerBound="1" eType="#//SizeIdentifier"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeArea" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//PackagableElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="collectLeafArea" ordered="false" upperBound="-1" eType="#//Area">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Area> areas = new java.util.HashSet&lt;Area>();&#xD;&#xA;if (layout != null) {&#xD;&#xA;    areas.addAll(layout.collectLeafArea());&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Area>(areas);"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.AREA;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="layout" eType="#//LayoutManager"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Area" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//Allocatable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.AREA;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="zorder" eType="ecore:EClass ../../rba.model.core/model/rbacore.ecore#//Expression"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" upperBound="-1" eType="#//SizeIdentifier"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AreaSet" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//AllocatableSet">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SET_OF_AREA;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SizeIdentifier" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Size" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//PackagableElement #//SizeIdentifier">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SizeReference" eSuperTypes="#//SizeIdentifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" eType="#//Size"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Offset" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//PackagableElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" lowerBound="1" eType="#//SizeReference"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AreaOperator" abstract="true" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//AllocatableOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsDisplayed" eSuperTypes="#//AreaOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isDisplayed()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DisplayingContent" eSuperTypes="#//AreaOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.displayingContent()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.CONTENT;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsHidden" eSuperTypes="#//AreaOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isHidden()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewContentOperator" abstract="true"
+      eSuperTypes="../../rba.model.core/model/rbacore.ecore#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsVisible" eSuperTypes="#//ViewContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isVisible()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllInstanceOfArea" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//SetExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;AREA&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SET_OF_AREA;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllInstanceOfViewContent" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//SetExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;ALL_VIEWCONTENTS&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SET_OF_CONTENT;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BasePoint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eLiterals name="LEFT_TOP"/>
+    <eLiterals name="LEFT_MIDDLE" value="1"/>
+    <eLiterals name="LEFT_BOTTOM" value="2"/>
+    <eLiterals name="RIGHT_TOP" value="3"/>
+    <eLiterals name="RIGHT_MIDDLE" value="4"/>
+    <eLiterals name="RIGHT_BOTTOM" value="5"/>
+    <eLiterals name="CENTER_TOP" value="6"/>
+    <eLiterals name="CENTER_MIDDLE" value="7"/>
+    <eLiterals name="CENTER_BOTTOM" value="8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsDisplayedOn" eSuperTypes="#//ViewContentOperator ../../rba.model.core/model/rbacore.ecore#//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isDisplayedOn&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsChangedDisplay" eSuperTypes="#//AreaOperator ../../rba.model.core/model/rbacore.ecore#//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isChangedDisplay()&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsTranslatedViewTo" eSuperTypes="#//AreaOperator ../../rba.model.core/model/rbacore.ecore#//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isTranslatedViewTo&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HideLowerPriority" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//Operator ../../rba.model.core/model/rbacore.ecore#//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;HideLowerPriority&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;,&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

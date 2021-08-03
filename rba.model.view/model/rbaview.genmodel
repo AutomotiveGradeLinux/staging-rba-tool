@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/rba.model.view/src" creationIcons="false" editDirectory="/rba.model.view.edit/src"
+    editorDirectory="/rba.model.view.editor/src" modelPluginID="rba.model.view" modelName="RbaView"
+    editPluginClass="rba.view.provider.RbaViewEditPlugin" editorPluginClass="rba.view.presentation.RbaViewEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    testsDirectory="/rba.model.view.tests/src" testSuiteClass="rba.view.tests.RbaViewAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="rba.model.view.edit" editorPluginID="rba.model.view.editor" usedGenPackages="../../rba.model.core/model/rbacore.genmodel#//core"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>rbaview.ecore</foreignModel>
+  <genPackages prefix="RBAView" basePackage="rba" disposableProviderFactory="true"
+      ecorePackage="rbaview.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rbaview.ecore#//BasePoint">
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/LEFT_TOP"/>
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/LEFT_MIDDLE"/>
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/LEFT_BOTTOM"/>
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/RIGHT_TOP"/>
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/RIGHT_MIDDLE"/>
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/RIGHT_BOTTOM"/>
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/CENTER_TOP"/>
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/CENTER_MIDDLE"/>
+      <genEnumLiterals ecoreEnumLiteral="rbaview.ecore#//BasePoint/CENTER_BOTTOM"/>
+    </genEnums>
+    <genClasses ecoreClass="rbaview.ecore#//ViewContent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//ViewContent/size"/>
+      <genOperations ecoreOperation="rbaview.ecore#//ViewContent/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//ViewContentSet">
+      <genOperations ecoreOperation="rbaview.ecore#//ViewContentSet/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//ViewContentState">
+      <genOperations ecoreOperation="rbaview.ecore#//ViewContentState/getExpressionType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbaview.ecore#//LayoutManager">
+      <genOperations ecoreOperation="rbaview.ecore#//LayoutManager/collectLeafArea"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbaview.ecore#//AlignedLayout">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbaview.ecore#//AlignedLayout/subarea"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbaview.ecore#//AlignedLayout/basePoint"/>
+      <genOperations ecoreOperation="rbaview.ecore#//AlignedLayout/collectLeafArea"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//VerticalLayout"/>
+    <genClasses ecoreClass="rbaview.ecore#//HorizontalLayout"/>
+    <genClasses ecoreClass="rbaview.ecore#//FixedPositionLayout">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//FixedPositionLayout/subAreaPosition"/>
+      <genOperations ecoreOperation="rbaview.ecore#//FixedPositionLayout/collectLeafArea"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//PositionContainer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbaview.ecore#//PositionContainer/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbaview.ecore#//PositionContainer/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbaview.ecore#//PositionContainer/basePoint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbaview.ecore#//PositionContainer/area"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//PositionContainer/offset"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//Display">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//Display/root"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//Display/size"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//CompositeArea">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//CompositeArea/layout"/>
+      <genOperations ecoreOperation="rbaview.ecore#//CompositeArea/collectLeafArea"/>
+      <genOperations ecoreOperation="rbaview.ecore#//CompositeArea/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//Area">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//Area/zorder"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//Area/size"/>
+      <genOperations ecoreOperation="rbaview.ecore#//Area/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//AreaSet">
+      <genOperations ecoreOperation="rbaview.ecore#//AreaSet/getExpressionType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbaview.ecore#//SizeIdentifier"/>
+    <genClasses ecoreClass="rbaview.ecore#//Size">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbaview.ecore#//Size/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbaview.ecore#//Size/height"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//SizeReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbaview.ecore#//SizeReference/size"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//Offset">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbaview.ecore#//Offset/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbaview.ecore#//Offset/y"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbaview.ecore#//Offset/size"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbaview.ecore#//AreaOperator"/>
+    <genClasses ecoreClass="rbaview.ecore#//IsDisplayed">
+      <genOperations ecoreOperation="rbaview.ecore#//IsDisplayed/getSymbol"/>
+      <genOperations ecoreOperation="rbaview.ecore#//IsDisplayed/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//DisplayingContent">
+      <genOperations ecoreOperation="rbaview.ecore#//DisplayingContent/getSymbol"/>
+      <genOperations ecoreOperation="rbaview.ecore#//DisplayingContent/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//IsHidden">
+      <genOperations ecoreOperation="rbaview.ecore#//IsHidden/getSymbol"/>
+      <genOperations ecoreOperation="rbaview.ecore#//IsHidden/getUnderlyingType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbaview.ecore#//ViewContentOperator">
+      <genOperations ecoreOperation="rbaview.ecore#//ViewContentOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//IsVisible">
+      <genOperations ecoreOperation="rbaview.ecore#//IsVisible/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//AllInstanceOfArea">
+      <genOperations ecoreOperation="rbaview.ecore#//AllInstanceOfArea/getExpressionText"/>
+      <genOperations ecoreOperation="rbaview.ecore#//AllInstanceOfArea/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//AllInstanceOfViewContent">
+      <genOperations ecoreOperation="rbaview.ecore#//AllInstanceOfViewContent/getExpressionText"/>
+      <genOperations ecoreOperation="rbaview.ecore#//AllInstanceOfViewContent/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//IsDisplayedOn">
+      <genOperations ecoreOperation="rbaview.ecore#//IsDisplayedOn/getSymbol"/>
+      <genOperations ecoreOperation="rbaview.ecore#//IsDisplayedOn/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbaview.ecore#//IsDisplayedOn/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//IsChangedDisplay">
+      <genOperations ecoreOperation="rbaview.ecore#//IsChangedDisplay/getSymbol"/>
+      <genOperations ecoreOperation="rbaview.ecore#//IsChangedDisplay/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//IsTranslatedViewTo">
+      <genOperations ecoreOperation="rbaview.ecore#//IsTranslatedViewTo/getSymbol"/>
+      <genOperations ecoreOperation="rbaview.ecore#//IsTranslatedViewTo/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbaview.ecore#//IsTranslatedViewTo/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbaview.ecore#//HideLowerPriority">
+      <genOperations ecoreOperation="rbaview.ecore#//HideLowerPriority/getSymbol"/>
+      <genOperations ecoreOperation="rbaview.ecore#//HideLowerPriority/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbaview.ecore#//HideLowerPriority/getExpressionText"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

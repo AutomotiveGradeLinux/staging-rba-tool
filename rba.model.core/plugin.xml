@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated rbacore -->
+      <package
+            uri="http://www.denso.com/ict/rba/core"
+            class="rba.core.RBACorePackage"
+            genModel="model/rbacore.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated rbaext -->
+      <package
+            uri="http://www.denso.com/ict/rba/extcore"
+            class="extcore.ExtcorePackage"
+            genModel="model/rbaext.genmodel"/>
+   </extension>
+
+</plugin>

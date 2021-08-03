@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/rba.model.sound/src" creationIcons="false" editDirectory="/rba.model.sound.edit/src"
+    editorDirectory="/rba.model.sound.editor/src" modelPluginID="rba.model.sound"
+    modelName="RbaSound" editPluginClass="rba.sound.provider.RbaSoundEditPlugin" editorPluginClass="rba.sound.presentation.RbaSoundEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    testsDirectory="/rba.model.sound.tests/src" testSuiteClass="rba.sound.tests.RbaSoundAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="rba.model.sound.edit" editorPluginID="rba.model.sound.editor" usedGenPackages="../../rba.model.core/model/rbacore.genmodel#//core"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>rbasound.ecore</foreignModel>
+  <genPackages prefix="RBASound" basePackage="rba" disposableProviderFactory="true"
+      ecorePackage="rbasound.ecore#/">
+    <genClasses ecoreClass="rbasound.ecore#//SoundContent">
+      <genOperations ecoreOperation="rbasound.ecore#//SoundContent/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//SoundContentSet">
+      <genOperations ecoreOperation="rbasound.ecore#//SoundContentSet/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//SoundContentState">
+      <genOperations ecoreOperation="rbasound.ecore#//SoundContentState/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//Zone">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbasound.ecore#//Zone/attenuate"/>
+      <genOperations ecoreOperation="rbasound.ecore#//Zone/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//ZoneSet">
+      <genOperations ecoreOperation="rbasound.ecore#//ZoneSet/getExpressionType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbasound.ecore#//SoundContentOperator">
+      <genOperations ecoreOperation="rbasound.ecore#//SoundContentOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//IsSounding">
+      <genOperations ecoreOperation="rbasound.ecore#//IsSounding/getSymbol"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbasound.ecore#//ZoneOperator">
+      <genOperations ecoreOperation="rbasound.ecore#//ZoneOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//IsOutputted">
+      <genOperations ecoreOperation="rbasound.ecore#//IsOutputted/getSymbol"/>
+      <genOperations ecoreOperation="rbasound.ecore#//IsOutputted/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//IsMuted">
+      <genOperations ecoreOperation="rbasound.ecore#//IsMuted/getSymbol"/>
+      <genOperations ecoreOperation="rbasound.ecore#//IsMuted/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//IsAttenuated">
+      <genOperations ecoreOperation="rbasound.ecore#//IsAttenuated/getSymbol"/>
+      <genOperations ecoreOperation="rbasound.ecore#//IsAttenuated/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//OutputtingSound">
+      <genOperations ecoreOperation="rbasound.ecore#//OutputtingSound/getSymbol"/>
+      <genOperations ecoreOperation="rbasound.ecore#//OutputtingSound/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//AllInstanceOfZone">
+      <genOperations ecoreOperation="rbasound.ecore#//AllInstanceOfZone/getExpressionText"/>
+      <genOperations ecoreOperation="rbasound.ecore#//AllInstanceOfZone/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//AllInstanceOfSoundContent">
+      <genOperations ecoreOperation="rbasound.ecore#//AllInstanceOfSoundContent/getExpressionText"/>
+      <genOperations ecoreOperation="rbasound.ecore#//AllInstanceOfSoundContent/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//IsOutputtedOn">
+      <genOperations ecoreOperation="rbasound.ecore#//IsOutputtedOn/getSymbol"/>
+      <genOperations ecoreOperation="rbasound.ecore#//IsOutputtedOn/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbasound.ecore#//IsOutputtedOn/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//IsChangedOutput">
+      <genOperations ecoreOperation="rbasound.ecore#//IsChangedOutput/getSymbol"/>
+      <genOperations ecoreOperation="rbasound.ecore#//IsChangedOutput/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//IsTranslatedSoundTo">
+      <genOperations ecoreOperation="rbasound.ecore#//IsTranslatedSoundTo/getSymbol"/>
+      <genOperations ecoreOperation="rbasound.ecore#//IsTranslatedSoundTo/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbasound.ecore#//IsTranslatedSoundTo/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbasound.ecore#//MuteLowerPriority">
+      <genOperations ecoreOperation="rbasound.ecore#//MuteLowerPriority/getSymbol"/>
+      <genOperations ecoreOperation="rbasound.ecore#//MuteLowerPriority/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbasound.ecore#//MuteLowerPriority/getExpressionText"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

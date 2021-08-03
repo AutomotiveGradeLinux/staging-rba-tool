@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="rba.tool.core"
+            name="RBA Tool Simulation">
+      </category>
+      <category
+            id="rba.tool.core.category.edit"
+            name="RBA Tool Edit">
+      </category>
+      <category
+            id="rba.tool.core.category.test"
+            name="RBA Tool Test">
+      </category>
+   </extension>
+	<extension
+         id="rba.tool.core.sort"
+         name="RBA Tool"
+         point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.problemmarker"/>
+		<super type="org.eclipse.core.resources.textmarker"/>            
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+   	<extension
+         id="rba.tool.core.constraint"
+         name="RBA Tool"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker"/>
+	  <super type="org.eclipse.core.resources.textmarker"/>                    
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+   	<extension
+         id="rba.tool.core.model.ex"
+         name="RBA Tool"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker"/>
+	  <super type="org.eclipse.core.resources.textmarker"/>                    
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             allPopups="false"
+             locationURI="toolbar:org.eclipse.ui.main.toobar?after=additions">
+          <toolbar
+                id="rba.tool.core.toolbar">
+          </toolbar>
+       </menuContribution>
+    </extension>
+    <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?before=additions">
+         <menu icon="icons/rba.gif" label="RBATool">
+           <command
+               commandId="rba.tool.verification.verificationCommand"
+               id="rba.tool.verification.verificationCommand"
+               label="Verify Constraints"
+               style="push">
+            <visibleWhen checkEnabled="true">
+               <reference definitionId="rba.tool.core.isResource"></reference>
+            </visibleWhen>
+           </command>           
+            <command
+                  commandId="rba.tool.coverage.tclogGeneration.runCommand"
+                  label="Run RBATest">
+            <visibleWhen checkEnabled="true">
+               <reference definitionId="rba.tool.core.isMultiSelect"></reference>
+            </visibleWhen>
+            </command>
+            <command
+                  commandId="rba.tool.coverage.calculator.calculateCoverageCommand"
+                  label="Calculate Coverage">
+            <visibleWhen checkEnabled="true">
+               <reference definitionId="rba.tool.core.isTestRev"></reference>
+            </visibleWhen>
+            </command>
+            <command
+                  commandId="rba.tool.coverage.ui.showTestResultCommand"
+                  style="push">
+            <visibleWhen checkEnabled="true">
+               <reference definitionId="rba.tool.core.isTestRev"></reference>
+            </visibleWhen>
+            </command>
+         </menu>
+      </menuContribution>        
+  </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="rba.tool.core.util.SelectionTester"
+            id="rba.tool.core.util.SelectionTester"
+            namespace="rba.tool"
+            properties="IsTestRev,IsResource,IsMultiSelect,IsTestCompare"
+            type="java.lang.Object">
+      </propertyTester>
+  </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="rba.tool.core.isTestRev">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.eclipse.core.resources.IResource">
+               <test
+                    forcePluginActivation="true"
+                    property="rba.tool.IsTestRev"
+                    value="true">
+               </test>
+                     </adapt>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </with>
+      </definition>
+      <definition
+            id="rba.tool.core.isResource">
+               <with
+                     variable="activeMenuSelection">
+                  <iterate
+                        ifEmpty="false">
+                     <adapt
+                           type="org.eclipse.core.resources.IResource">
+               <test
+                    forcePluginActivation="true"
+                    property="rba.tool.IsResource"
+                    value="true">
+               </test>
+                     </adapt>
+                  </iterate>
+                  <count
+                        value="1">
+                  </count>
+               </with>
+      </definition>
+      <definition
+            id="rba.tool.core.isMultiSelect">
+         <with
+               variable="activeMenuSelection">
+            <iterate
+                  ifEmpty="false">
+               <adapt
+                     type="org.eclipse.core.resources.IResource">
+                  <test
+                        forcePluginActivation="true"
+                        property="rba.tool.IsMultiSelect"
+                        value="true">
+                  </test>
+               </adapt>
+            </iterate>
+            <count
+                  value="+">
+            </count>
+         </with>
+      </definition>
+   </extension>
+</plugin>

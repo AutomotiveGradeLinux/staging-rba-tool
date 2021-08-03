@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: rba.tool.editor.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: rba.tool.editor,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: rba.tool.editor.ide.contentassist.antlr,
+ rba.tool.editor.ide.contentassist.antlr.internal
+

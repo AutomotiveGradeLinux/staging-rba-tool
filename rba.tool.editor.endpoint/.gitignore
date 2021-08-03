@@ -1,0 +1,4 @@
+*.jar
+!lib/linux/z3/bin/*.jar
+*.java
+*.json

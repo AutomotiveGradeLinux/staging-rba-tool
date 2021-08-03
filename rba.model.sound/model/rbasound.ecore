@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sound" nsURI="http://www.denso.com/ict/rba/sound" nsPrefix="RbaSound">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="RbaCore" value="../../rba.model.core/model/rbacore.ecore#/"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="SoundContent" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//Content">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SOUND;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SoundContentSet" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//ContentSet">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SET_OF_SOUND;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SoundContentState" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//ContentState">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.CONTENT_STATE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Zone" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//Allocatable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.ZONE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attenuate" eType="ecore:EClass ../../rba.model.core/model/rbacore.ecore#//Expression"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ZoneSet" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//AllocatableSet">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SET_OF_ZONE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SoundContentOperator" abstract="true"
+      eSuperTypes="../../rba.model.core/model/rbacore.ecore#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsSounding" eSuperTypes="#//SoundContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isSounding()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ZoneOperator" abstract="true" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsOutputted" eSuperTypes="#//ZoneOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isOutputted()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsMuted" eSuperTypes="#//ZoneOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isMuted()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsAttenuated" eSuperTypes="#//ZoneOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isAttenauted()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputtingSound" eSuperTypes="#//ZoneOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.outputtingSound()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SOUND;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllInstanceOfZone" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//SetExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;ALL_ZONES&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SET_OF_ZONE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllInstanceOfSoundContent" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//SetExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;ALL_SOUNDCONTENTS&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SET_OF_SOUND;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsOutputtedOn" eSuperTypes="#//SoundContentOperator ../../rba.model.core/model/rbacore.ecore#//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isOutputtedOn&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsChangedOutput" eSuperTypes="#//ZoneOperator ../../rba.model.core/model/rbacore.ecore#//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isChangedOutput()&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsTranslatedSoundTo" eSuperTypes="#//ZoneOperator ../../rba.model.core/model/rbacore.ecore#//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isTranslatedSoundTo&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MuteLowerPriority" eSuperTypes="../../rba.model.core/model/rbacore.ecore#//Operator ../../rba.model.core/model/rbacore.ecore#//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;MuteLowerPriority&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="ecore:EEnum ../../rba.model.core/model/rbacore.ecore#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;,&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>

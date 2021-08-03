@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/rba.model.core/src" creationIcons="false" editDirectory="/rba.model.core.edit/src"
+    editorDirectory="/rba.model.core.editor/src" modelPluginID="rba.model.core" modelName="RbaCore"
+    editPluginClass="rba.core.provider.RbaCoreEditPlugin" editorPluginClass="rba.core.presentation.RbaCoreEditorPlugin"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    testsDirectory="/rba.model.core.tests/src" testSuiteClass="rba.core.tests.RbaCoreAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>rbacore.ecore</foreignModel>
+  <genPackages prefix="RBACore" basePackage="rba" disposableProviderFactory="true"
+      ecorePackage="rbacore.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rbacore.ecore#//ArbitrationPolicy">
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ArbitrationPolicy/DEFAULT"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ArbitrationPolicy/FIRST_COME_FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ArbitrationPolicy/LAST_COME_FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ArbitrationPolicy/PRIORITY_FIRST_COME_FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ArbitrationPolicy/PRIORITY_LAST_COME_FIRST"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rbacore.ecore#//ExpressionType">
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/VALUE"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/AREA"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/CONTENT"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/SET_OF_AREA"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/SET_OF_CONTENT"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/LAMBDA"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/SCENE"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/ZONE"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/SET_OF_ZONE"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/SOUND"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/SET_OF_SOUND"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/PROPERTY"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/CONTENT_STATE"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/ENUM"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//ExpressionType/NULL"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="rbacore.ecore#//LoserType">
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//LoserType/NEVER_GIVEUP"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//LoserType/GOOD_LOSER"/>
+      <genEnumLiterals ecoreEnumLiteral="rbacore.ecore#//LoserType/DO_NOT_GIVEUP_UNTIL_WIN"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//ModelElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//ModelElement/description"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//AbstractAllocatable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//AbstractAllocatable/contents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//AbstractAllocatable/allocatableGroup"/>
+      <genOperations ecoreOperation="rbacore.ecore#//AbstractAllocatable/getContentsList"/>
+      <genOperations ecoreOperation="rbacore.ecore#//AbstractAllocatable/collectLeafAllocatable"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//Allocatable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Allocatable/arbitrationPolicy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//Allocatable/visibility"/>
+      <genOperations ecoreOperation="rbacore.ecore#//Allocatable/collectLeafAllocatable"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//AllocatableSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//AllocatableSet/target"/>
+      <genOperations ecoreOperation="rbacore.ecore#//AllocatableSet/collectLeafAllocatable"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//Project">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Project/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Project/dummyName"/>
+      <genOperations ecoreOperation="rbacore.ecore#//Project/getName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//PackagableElement"/>
+    <genClasses ecoreClass="rbacore.ecore#//Package">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//Package/packagableelement"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//Stereotype">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Stereotype/targetModelName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//Stereotype/variables"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Stereotype/bodyText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//Tag">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Tag/values"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//RuleObject">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//RuleObject/tags"/>
+      <genOperations ecoreOperation="rbacore.ecore#//RuleObject/getExpressionType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//AbstractContent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//AbstractContent/contentGroup"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//AbstractContent/allocatable"/>
+      <genOperations ecoreOperation="rbacore.ecore#//AbstractContent/getAllocatableList"/>
+      <genOperations ecoreOperation="rbacore.ecore#//AbstractContent/collectLeafContents"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//AbstractScene"/>
+    <genClasses ecoreClass="rbacore.ecore#//Scene">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Scene/global"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//Scene/properties"/>
+      <genOperations ecoreOperation="rbacore.ecore#//Scene/getExpressionType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//Content">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Content/loserType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//Content/states"/>
+      <genOperations ecoreOperation="rbacore.ecore#//Content/collectLeafContents"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//ContentSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//ContentSet/target"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ContentSet/collectLeafContents"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//ContentState">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//ContentState/value"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rbacore.ecore#//ContentState/owner"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//AbstractProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//AbstractProperty/owner"/>
+      <genOperations ecoreOperation="rbacore.ecore#//AbstractProperty/getExpressionType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IntegerProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//IntegerProperty/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//AbstractConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//AbstractConstraint/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//Constraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Constraint/runtime"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//Expression">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Expression/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//Expression/expression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//Expression/letStatements"/>
+      <genOperations ecoreOperation="rbacore.ecore#//Expression/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//Expression/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//LetStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//LetStatement/variable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//LetStatement/body"/>
+      <genOperations ecoreOperation="rbacore.ecore#//LetStatement/toString"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ComplexExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//ComplexExpression/otherExpression"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ComplexExpression/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ComplexExpression/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ComplexExpression/getType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//Operator">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//Operator/operand"/>
+      <genOperations ecoreOperation="rbacore.ecore#//Operator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsTypeOf">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//IsTypeOf/tagName"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsTypeOf/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsTypeOf/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsTypeOf/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ObjectReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rbacore.ecore#//ObjectReference/refObject"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ObjectReference/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ObjectReference/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//PreviousModifier">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//PreviousModifier/objReference"/>
+      <genOperations ecoreOperation="rbacore.ecore#//PreviousModifier/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//PreviousModifier/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//PreviousModifier/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//GreaterThanOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//GreaterThanOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//MuchGreaterThanOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//MuchGreaterThanOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//LowerThanOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//LowerThanOperator/getSymbol"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//ComparisonOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//ComparisonOperator/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ComparisonOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//EqualToOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//EqualToOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ComparisonAnd">
+      <genOperations ecoreOperation="rbacore.ecore#//ComparisonAnd/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ComparisonAnd/getExpressionText"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//LogicalOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//LogicalOperator/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//LogicalOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//AndOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//AndOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//OrOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//OrOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//NotOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//NotOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//NotOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsEqualToOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//IsEqualToOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsGreaterThanOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//IsGreaterThanOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsLowerThanOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//IsLowerThanOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsGreaterThanEqualOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//IsGreaterThanEqualOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsLowerThanEqualOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//IsLowerThanEqualOperator/getSymbol"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//ArithmeticOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//ArithmeticOperator/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ArithmeticOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//PlusOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//PlusOperator/getSymbol"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ImpliesOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//ImpliesOperator/getSymbol"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//ContentOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//ContentOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsActive">
+      <genOperations ecoreOperation="rbacore.ecore#//IsActive/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsActive/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//GetAllocatables">
+      <genOperations ecoreOperation="rbacore.ecore#//GetAllocatables/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//GetAllocatables/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//HasBeenDisplayed">
+      <genOperations ecoreOperation="rbacore.ecore#//HasBeenDisplayed/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//HasBeenDisplayed/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ActiveState">
+      <genOperations ecoreOperation="rbacore.ecore#//ActiveState/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ActiveState/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ObjectCompare">
+      <genOperations ecoreOperation="rbacore.ecore#//ObjectCompare/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ObjectCompare/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ObjectCompare/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ThatOfOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//ThatOfOperator/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ThatOfOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ThatOfOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//ValueExpression">
+      <genOperations ecoreOperation="rbacore.ecore#//ValueExpression/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ValueExpression/getExpressionValue"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ValueExpression/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//MaxValue">
+      <genOperations ecoreOperation="rbacore.ecore#//MaxValue/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//MaxValue/getExpressionValue"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//MinValue">
+      <genOperations ecoreOperation="rbacore.ecore#//MinValue/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//MinValue/getExpressionValue"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//NoneValue">
+      <genOperations ecoreOperation="rbacore.ecore#//NoneValue/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//NoneValue/getExpressionValue"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//StandardValue">
+      <genOperations ecoreOperation="rbacore.ecore#//StandardValue/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//StandardValue/getExpressionValue"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IntegerValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//IntegerValue/value"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IntegerValue/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IntegerValue/getExpressionValue"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//EnumExpression">
+      <genOperations ecoreOperation="rbacore.ecore#//EnumExpression/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//EnumExpression/getExpressionValue"/>
+      <genOperations ecoreOperation="rbacore.ecore#//EnumExpression/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//LoserTypeExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//LoserTypeExpression/value"/>
+      <genOperations ecoreOperation="rbacore.ecore#//LoserTypeExpression/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//LoserTypeExpression/getExpressionValue"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ArbitrationPolicyExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rbacore.ecore#//ArbitrationPolicyExpression/value"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ArbitrationPolicyExpression/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ArbitrationPolicyExpression/getExpressionValue"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//SetExpression"/>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//SetOperator"/>
+    <genClasses ecoreClass="rbacore.ecore#//SizeOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//SizeOperator/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//SizeOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//SizeOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ExistsOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//ExistsOperator/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ExistsOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ExistsOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ForAllOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//ForAllOperator/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ForAllOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ForAllOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//MaxOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//MaxOperator/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//MaxOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//MaxOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//MinOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//MinOperator/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//MinOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//MinOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//SelectOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//SelectOperator/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//SelectOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//SelectOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//SetOfOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//SetOfOperator/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//SetOfOperator/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//SetOfOperator/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//LambdaExpression">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference rbacore.ecore#//LambdaExpression/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//LambdaExpression/x"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//LambdaExpression/bodyText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//LambdaExpression/getExpressionText"/>
+      <genOperations ecoreOperation="rbacore.ecore#//LambdaExpression/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//Variable">
+      <genOperations ecoreOperation="rbacore.ecore#//Variable/getExpressionType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//LambdaContext">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//LambdaContext/lambda"/>
+      <genOperations ecoreOperation="rbacore.ecore#//LambdaContext/getContextType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IfStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//IfStatement/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//IfStatement/thenExpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rbacore.ecore#//IfStatement/elseExpression"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IfStatement/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IfStatement/getExpressionText"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//SceneOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//SceneOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsOn">
+      <genOperations ecoreOperation="rbacore.ecore#//IsOn/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsOn/getUnderlyingType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//AllocatableOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//AllocatableOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//AllocatedContent">
+      <genOperations ecoreOperation="rbacore.ecore#//AllocatedContent/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//AllocatedContent/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ContentValue">
+      <genOperations ecoreOperation="rbacore.ecore#//ContentValue/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ContentValue/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//GetContentsList">
+      <genOperations ecoreOperation="rbacore.ecore#//GetContentsList/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//GetContentsList/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ActiveContents">
+      <genOperations ecoreOperation="rbacore.ecore#//ActiveContents/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ActiveContents/getUnderlyingType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//PropertyOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//PropertyOperator/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//PropertyOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//GetProperty">
+      <genOperations ecoreOperation="rbacore.ecore#//GetProperty/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//GetProperty/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//StateValue">
+      <genOperations ecoreOperation="rbacore.ecore#//StateValue/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//StateValue/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//HasComeLaterThan">
+      <genOperations ecoreOperation="rbacore.ecore#//HasComeLaterThan/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//HasComeLaterThan/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//HasComeLaterThan/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//HasComeEarlierThan">
+      <genOperations ecoreOperation="rbacore.ecore#//HasComeEarlierThan/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//HasComeEarlierThan/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//HasComeEarlierThan/getExpressionText"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//SugarExpression">
+      <genOperations ecoreOperation="rbacore.ecore#//SugarExpression/canExpand"/>
+      <genOperations ecoreOperation="rbacore.ecore#//SugarExpression/getExpanded"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//SugarExpressionBase">
+      <genOperations ecoreOperation="rbacore.ecore#//SugarExpressionBase/canExpand"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//ObjectCompareNot">
+      <genOperations ecoreOperation="rbacore.ecore#//ObjectCompareNot/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ObjectCompareNot/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//ObjectCompareNot/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsAllocatedTo">
+      <genOperations ecoreOperation="rbacore.ecore#//IsAllocatedTo/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsAllocatedTo/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsAllocatedTo/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsChanged">
+      <genOperations ecoreOperation="rbacore.ecore#//IsChanged/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsChanged/getUnderlyingType"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//IsTranslatedTo">
+      <genOperations ecoreOperation="rbacore.ecore#//IsTranslatedTo/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsTranslatedTo/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//IsTranslatedTo/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//GetState">
+      <genOperations ecoreOperation="rbacore.ecore#//GetState/getSymbol"/>
+      <genOperations ecoreOperation="rbacore.ecore#//GetState/getUnderlyingType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rbacore.ecore#//ContentStateOperator">
+      <genOperations ecoreOperation="rbacore.ecore#//ContentStateOperator/getExpressionText"/>
+    </genClasses>
+    <genClasses ecoreClass="rbacore.ecore#//NullExpression">
+      <genOperations ecoreOperation="rbacore.ecore#//NullExpression/getUnderlyingType"/>
+      <genOperations ecoreOperation="rbacore.ecore#//NullExpression/getExpressionText"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

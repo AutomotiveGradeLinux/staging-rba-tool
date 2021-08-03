@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry including="**/*.java" kind="src" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="xtend-gen"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.tool.editor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.tool.editor.ide"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.model.core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.model.core.edit"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.model.sound"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.model.sound.edit"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.model.view"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.model.view.edit"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/rba.tool.core"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/ace-1.2.3.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/antlr-runtime-3.2.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/asm-5.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/asm-commons-5.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/asm-tree-5.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/com.google.guava_21.0.0.v20170206-1425.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/com.google.inject_3.0.0.v201312141243.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/com.ibm.icu_58.2.0.v20170418-1837.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/de.itemis.xtext.antlr_2.1.1.v201405091103.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/gson-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/guava-19.0-rc3.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/guice-3.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/javax.inject_1.0.0.v20091030.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-annotations-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-client-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-http-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-io-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-jndi-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-plus-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-security-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-server-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-servlet-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-util-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-webapp-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jetty-xml-9.3.8.v20160314.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jfxswt.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/jquery-2.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.antlr.generator_3.2.0.v201405091103.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.antlr.runtime_3.2.0.v201101311130.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.antlr.runtime_4.3.0.v201502022030.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.apache.commons.cli_1.2.0.v201404270220.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.apache.commons.logging_1.1.1.v201101211721.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.apache.log4j_1.2.15.v201012070815.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.core.commands_3.9.0.v20170530-1048.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.core.contenttype_3.6.0.v20170207-1037.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.core.jobs_3.9.1.v20170714-0547.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.core.resources_3.12.0.v20170417-1558.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.core.runtime_3.13.0.v20170207-1030.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.codegen_2.12.0.v20170609-0928.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.codegen.ecore_2.13.0.v20170609-0928.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.common_2.13.0.v20170609-0707.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.common-2.15.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.ecore_2.13.0.v20170609-0707.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.ecore-2.15.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.ecore.change_2.11.0.v20170609-0707.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.ecore.change-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.ecore.xmi_2.13.0.v20170609-0707.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.ecore.xmi-2.15.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.edit_2.12.0.v20170609-0928.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.mwe.core_1.3.21.201705291011.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.mwe.utils_1.3.21.201705291011.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.mwe2.language_2.9.1.201705291011.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.mwe2.launch_2.9.1.201705291011.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.mwe2.lib_2.9.1.201705291011.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.mwe2.runtime_2.9.1.201705291011.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.transaction_1.9.0.201706061339.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.validation_1.8.0.201706061352.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.emf.workspace_1.5.1.201706061339.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.equinox.app_1.3.400.v20150715-1528.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.equinox.common_3.9.0.v20170207-1454.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.equinox.common-3.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.equinox.preferences_3.7.0.v20170126-2132.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.equinox.registry_3.7.0.v20170222-1344.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.fx.ide.css.jfx8_3.0.0.201705220750.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.fx.osgi_3.0.0.201705220748.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.jface_3.13.1.v20170810-0135.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.lsp4j-0.4.0.M6.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.lsp4j.generator-0.4.0.M6.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.lsp4j.jsonrpc-0.4.0.M6.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.osgi_3.12.50.v20170928-1321.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.osgi-3.11.2.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.osgi.compatibility.state_1.1.0.v20170516-1513.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.swt_3.106.1.v20170926-0519.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.swt.win32.win32.x86_64_3.106.1.v20170926-0519.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xpand_2.2.0.v201605260315.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtend_2.2.0.v201605260315.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtend.lib_2.13.0.v20171020-0659.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtend.lib-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtend.lib.macro_2.13.0.v20171020-0659.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtend.lib.macro-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtend.typesystem.emf_2.2.0.v201605260315.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext_2.13.0.v20171020-0708.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.common.types_2.13.0.v20171020-0717.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.common.types-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.generator_2.13.0.v20171020-0717.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.ide_2.13.0.v20171020-0708.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.ide-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.util_2.13.0.v20171020-0708.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.util-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.web-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.web.servlet-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.xbase_2.13.0.v20171020-0717.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.xbase-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.xbase.ide_2.13.0.v20171020-0717.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.xbase.ide-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.xbase.lib_2.13.0.v20171020-0659.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.xbase.lib-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.xbase.web-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.eclipse.xtext.xtext.generator_2.13.0.v20171020-0708.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/org.objectweb.asm_5.0.1.v201404251740.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/requirejs-2.3.2.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="lib/ServerLauncher_lib/slf4j-simple-1.7.25.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

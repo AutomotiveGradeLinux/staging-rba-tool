@@ -1,0 +1,1669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="core" nsURI="http://www.denso.com/ict/rba/core" nsPrefix="RbaCore">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//ModelElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractAllocatable" abstract="true"
+      eSuperTypes="#//RuleObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getContentsList" ordered="false" upperBound="-1" eType="#//Content">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Content> contents = new java.util.LinkedHashSet&lt;Content>();&#xD;&#xA;getContents().forEach(content -> contents.addAll(content.collectLeafContents()));&#xD;&#xA;getAllocatableGroup().forEach(allocatableSet -> contents.addAll(allocatableSet.getContentsList()));&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Content>(contents);"/>
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="collectLeafAllocatable" ordered="false" upperBound="-1" eType="#//Allocatable">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
+        eType="#//AbstractContent" eOpposite="#//AbstractContent/allocatable">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allocatableGroup" upperBound="-1"
+        eType="#//AllocatableSet" eOpposite="#//AllocatableSet/target">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Allocatable" abstract="true" eSuperTypes="#//AbstractAllocatable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="collectLeafAllocatable" ordered="false" upperBound="-1" eType="#//Allocatable">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Allocatable> allocatables = new java.util.HashSet&lt;Allocatable>();&#xD;&#xA;allocatables.add(this);&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Allocatable>(allocatables);"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="arbitrationPolicy" eType="#//ArbitrationPolicy">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="visibility" eType="#//Expression"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllocatableSet" abstract="true" eSuperTypes="#//AbstractAllocatable">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="collectLeafAllocatable" ordered="false" upperBound="-1" eType="#//Allocatable">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Allocatable> allocatables = new java.util.LinkedHashSet&lt;Allocatable>();&#xD;&#xA;getTarget().forEach(allocatable -> allocatables.addAll(allocatable.collectLeafAllocatable()));&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Allocatable>(allocatables);"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" upperBound="-1"
+        eType="#//AbstractAllocatable" eOpposite="#//AbstractAllocatable/allocatableGroup">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Project" eSuperTypes="#//Package">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (this.eResource() != null) {&#xD;&#xA;    String segments[] = this.eResource().getURI().toString().split(&quot;/&quot;);&#xD;&#xA;    return segments[2];&#xD;&#xA;} else {&#xD;&#xA;    return this.name;&#xD;&#xA;}   "/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dummyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackagableElement" abstract="true" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//PackagableElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packagableelement" upperBound="-1"
+        eType="#//PackagableElement" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stereotype" eSuperTypes="#//PackagableElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetModelName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//Variable" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bodyText" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tag" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RuleObject" abstract="true" eSuperTypes="#//PackagableElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tags" upperBound="-1" eType="#//Tag"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractContent" abstract="true" eSuperTypes="#//RuleObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getAllocatableList" ordered="false" upperBound="-1" eType="#//Allocatable">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Allocatable> allocatables = new java.util.LinkedHashSet&lt;Allocatable>();&#xD;&#xA;getAllocatable().forEach(allocatable -> allocatables.addAll(allocatable.collectLeafAllocatable()));&#xD;&#xA;getContentGroup().forEach(contentSet -> allocatables.addAll(contentSet.getAllocatableList()));&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Allocatable>(allocatables);"/>
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="collectLeafContents" ordered="false" upperBound="-1" eType="#//Content">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contentGroup" upperBound="-1"
+        eType="#//ContentSet" eOpposite="#//ContentSet/target">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allocatable" upperBound="-1"
+        eType="#//AbstractAllocatable" eOpposite="#//AbstractAllocatable/contents"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractScene" abstract="true" eSuperTypes="#//RuleObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Scene" eSuperTypes="#//AbstractScene">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.SCENE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="global" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//AbstractProperty" containment="true" eOpposite="#//AbstractProperty/owner">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Content" abstract="true" eSuperTypes="#//AbstractContent">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="collectLeafContents" ordered="false" upperBound="-1" eType="#//Content">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Content> contents = new java.util.HashSet&lt;Content>();&#xD;&#xA;contents.add(this);&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Content>(contents);"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="loserType" eType="#//LoserType"
+        defaultValueLiteral="NEVER_GIVEUP"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
+        eType="#//ContentState" containment="true" eOpposite="#//ContentState/owner">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContentSet" abstract="true" eSuperTypes="#//AbstractContent">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="collectLeafContents" ordered="false" upperBound="-1" eType="#//Content">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="java.util.Set&lt;Content> contents = new java.util.LinkedHashSet&lt;Content>();&#xD;&#xA;getTarget().forEach(content -> contents.addAll(content.collectLeafContents()));&#xD;&#xA;return new org.eclipse.emf.common.util.BasicEList&lt;Content>(contents);"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" upperBound="-1"
+        eType="#//AbstractContent" eOpposite="#//AbstractContent/contentGroup"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContentState" abstract="true" eSuperTypes="#//RuleObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Expression"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Content"
+        eOpposite="#//Content/states">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractProperty" abstract="true" eSuperTypes="#//RuleObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.PROPERTY;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Scene"
+        eOpposite="#//Scene/properties">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerProperty" eSuperTypes="#//AbstractProperty">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractConstraint" abstract="true"
+      eSuperTypes="#//PackagableElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//AbstractConstraint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="runtime" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"
+        unsettable="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ExpressionType"
+        changeable="false" volatile="true" unsettable="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" unsettable="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="letStatements" upperBound="-1"
+        eType="#//LetStatement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LetStatement" eSuperTypes="#//ModelElement">
+    <eOperations name="toString" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder ret = new StringBuilder();&#xD;&#xA;ret.append(&quot;let &quot;); //$NON-NLS-1$&#xD;&#xA;ret.append(getVariable().getName());&#xD;&#xA;ret.append(&quot;= &quot;); //$NON-NLS-1$&#xD;&#xA;ret.append(getBody().getExpressionText());&#xD;&#xA;return ret.toString();"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexExpression" eSuperTypes="#//Expression #//SugarExpressionBase">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return otherExpression != null ? otherExpression.getExpressionText() : &quot;[Invalid_Expression]&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (otherExpression != null) {&#xD;&#xA;    return otherExpression.getType();&#xD;&#xA;} else {&#xD;&#xA;    return ExpressionType.VALUE;&#xD;&#xA;}"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return getUnderlyingType();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="otherExpression" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
+        upperBound="-1" eType="#//Expression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsTypeOf" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(tagName != null ? tagName : &quot;&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isTypeOf&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tagName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectReference" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="RuleObject obj = getRefObject();&#xD;&#xA;if (obj != null) {&#xD;&#xA;  return obj.getExpressionType();&#xD;&#xA;} else {&#xD;&#xA;  return ExpressionType.VALUE;&#xD;&#xA;}"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;RuleObject obj = getRefObject();&#xD;&#xA;if (obj instanceof &lt;%rba.core.ContentState%>) {&#xD;&#xA;    ContentState state = (ContentState) obj;&#xD;&#xA;    expressionText.append(state.getOwner().getName() + &quot;.&quot; + state.getName());&#xD;&#xA;} else if (obj instanceof &lt;%rba.core.AbstractProperty%>) {&#xD;&#xA;    AbstractProperty property = (AbstractProperty) obj;&#xD;&#xA;    expressionText.append(property.getOwner().getName() + &quot;.&quot; + property.getName());&#xD;&#xA;} else {&#xD;&#xA;    expressionText.append(obj != null ? obj.getName() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;}&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refObject" eType="#//RuleObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PreviousModifier" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;(pre)&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="ObjectReference objReference = getObjReference();&#xD;&#xA;if (objReference != null) {&#xD;&#xA;  return objReference.getUnderlyingType();&#xD;&#xA;} else {&#xD;&#xA;  return ExpressionType.VALUE;&#xD;&#xA;}"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;if (getObjReference() != null &amp;&amp; getObjReference().getRefObject() != null) {&#xD;&#xA;    ObjectReference reference = getObjReference();&#xD;&#xA;    expressionText.append(getSymbol());&#xD;&#xA;    expressionText.append(reference.getExpressionText());&#xD;&#xA;} else {&#xD;&#xA;    expressionText.append(&quot;[Invalid_Expression]&quot;);&#xD;&#xA;}&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objReference" eType="#//ObjectReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterThanOperator" eSuperTypes="#//ComparisonOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;>&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MuchGreaterThanOperator" eSuperTypes="#//ComparisonOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;>>&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LowerThanOperator" eSuperTypes="#//ComparisonOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;&lt;&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComparisonOperator" abstract="true"
+      eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.VALUE;"/>
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualToOperator" eSuperTypes="#//ComparisonOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;=&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComparisonAnd" eSuperTypes="#//ComparisonOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;and&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;for (int i = 0; i &lt; expressions.size(); i++) {&#xD;&#xA;  rba.core.Expression expression = expressions.get(i);&#xD;&#xA;  expressionText.append(expression.getExpressionText());&#xD;&#xA;  if (i == expressions.size() - 1) {&#xD;&#xA;    expressionText.append(&quot;)&quot;);&#xD;&#xA;  } else {&#xD;&#xA;     expressionText.append(&quot; &quot;);&#xD;&#xA;     expressionText.append(getSymbol());&#xD;&#xA;     expressionText.append(&quot; &quot;);&#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicalOperator" abstract="true" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;for (int i = 0; i &lt; expressions.size(); i++) {&#xD;&#xA;  rba.core.Expression expression = expressions.get(i);&#xD;&#xA;  expressionText.append(expression.getExpressionText());&#xD;&#xA;  if (i == expressions.size() - 1) {&#xD;&#xA;    expressionText.append(&quot;)&quot;);&#xD;&#xA;  } else {&#xD;&#xA;     expressionText.append(&quot; &quot;);&#xD;&#xA;     expressionText.append(getSymbol());&#xD;&#xA;     expressionText.append(&quot; &quot;);&#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;AND&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;OR&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;!&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsEqualToOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;=&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsGreaterThanOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;>&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsLowerThanOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;&lt;&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsGreaterThanEqualOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;>=&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsLowerThanEqualOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;&lt;=&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArithmeticOperator" abstract="true"
+      eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;for (int i = 0; i &lt; expressions.size(); i++) {&#xD;&#xA;  rba.core.Expression expression = expressions.get(i);&#xD;&#xA;  expressionText.append(expression.getExpressionText());&#xD;&#xA;  if (i == expressions.size() - 1) {&#xD;&#xA;    expressionText.append(&quot;)&quot;);&#xD;&#xA;  } else {&#xD;&#xA;     expressionText.append(&quot; &quot;);&#xD;&#xA;     expressionText.append(getSymbol());&#xD;&#xA;     expressionText.append(&quot; &quot;);&#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlusOperator" eSuperTypes="#//ArithmeticOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;+&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImpliesOperator" eSuperTypes="#//LogicalOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;->&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContentOperator" abstract="true" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsActive" eSuperTypes="#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isActive()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GetAllocatables" eSuperTypes="#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.allocatables()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;if (!expressions.isEmpty() &amp;&amp; expressions.get(0) != null) {&#xD;&#xA;  rba.core.Expression first = expressions.get(0);&#xD;&#xA;  if (first.getType() == ExpressionType.CONTENT) {&#xD;&#xA;    return ExpressionType.SET_OF_AREA;&#xD;&#xA;  } else if (first.getType() == ExpressionType.SOUND) {&#xD;&#xA;    return ExpressionType.SET_OF_ZONE;&#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HasBeenDisplayed" eSuperTypes="#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.hasBeenDisplayed()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActiveState" eSuperTypes="#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.activeState()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.CONTENT_STATE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectCompare" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;==&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; &quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot; &quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ThatOfOperator" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;That of &quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueExpression" abstract="true" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return getUnderlyingType();"/>
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MaxValue" eSuperTypes="#//ValueExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;MAX&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return 9999;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MinValue" eSuperTypes="#//ValueExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;MIN&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return 0;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NoneValue" eSuperTypes="#//ValueExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;NONE&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return -1;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StandardValue" eSuperTypes="#//ValueExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;STANDARD&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return 10;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerValue" eSuperTypes="#//ValueExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return String.valueOf(value);"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return value;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumExpression" abstract="true" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.ENUM;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEnumerator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return getUnderlyingType();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoserTypeExpression" eSuperTypes="#//EnumExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if(value instanceof LoserType) {&#xD;&#xA;    return value.getName();&#xD;&#xA;} else {&#xD;&#xA;    return &quot;[Invalid_Expression]&quot;;&#xD;&#xA;}"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEnumerator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return value;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//LoserType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArbitrationPolicyExpression" eSuperTypes="#//EnumExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if(value instanceof ArbitrationPolicy) {&#xD;&#xA;    return value.getName();&#xD;&#xA;} else {&#xD;&#xA;    return &quot;[Invalid_Expression]&quot;;&#xD;&#xA;}"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEnumerator">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return value;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//ArbitrationPolicy">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetExpression" abstract="true" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetOperator" abstract="true" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SizeOperator" eSuperTypes="#//SetOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.size()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExistsOperator" eSuperTypes="#//LambdaContext">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;rba.core.LambdaExpression lambda = getLambda();&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot; &quot;);&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; &quot;);&#xD;&#xA;expressionText.append(lambda != null ? lambda.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;Exists&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForAllOperator" eSuperTypes="#//LambdaContext">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;rba.core.LambdaExpression lambda = getLambda();&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot; &quot;);&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; &quot;);&#xD;&#xA;expressionText.append(lambda != null ? lambda.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;For All&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="rba.core.LambdaExpression lambda = getLambda();&#xD;&#xA;if (lambda != null &amp;&amp; lambda.getBodyText() != null) {&#xD;&#xA;return lambda.getBodyText().getUnderlyingType();&#xD;&#xA;}&#xD;&#xA;return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MaxOperator" eSuperTypes="#//LambdaContext">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;rba.core.LambdaExpression lambda = getLambda();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;{ &quot;);&#xD;&#xA;expressionText.append(lambda != null ? lambda.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; }&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.max&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return getContextType();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MinOperator" eSuperTypes="#//LambdaContext">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;rba.core.LambdaExpression lambda = getLambda();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;{ &quot;);&#xD;&#xA;expressionText.append(lambda != null ? lambda.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; }&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.min&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return getContextType();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelectOperator" eSuperTypes="#//LambdaContext">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;rba.core.LambdaExpression lambda = getLambda();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;{ &quot;);&#xD;&#xA;expressionText.append(lambda != null ? lambda.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; }&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.select&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (!getOperand().isEmpty()) {&#xD;&#xA;    &lt;%rba.core.Expression%> first = getOperand().get(0);&#xD;&#xA;    return first.getType();&#xD;&#xA;}&#xD;&#xA;return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SetOfOperator" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(&quot;{&quot;);&#xD;&#xA;for (int i = 0; i &lt; expressions.size(); i++) {&#xD;&#xA;  rba.core.Expression expression = expressions.get(i);&#xD;&#xA;  expressionText.append(expression.getExpressionText());&#xD;&#xA;  if (i == expressions.size() - 1) {&#xD;&#xA;    expressionText.append(&quot;}&quot;);&#xD;&#xA;  } else {&#xD;&#xA;    expressionText.append(&quot;, &quot;);&#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;if (!expressions.isEmpty() &amp;&amp; expressions.get(0) != null) {&#xD;&#xA;    rba.core.Expression first = expressions.get(0);&#xD;&#xA;    if ((first.getType() == ExpressionType.CONTENT) || (first.getType() == ExpressionType.SET_OF_CONTENT)) {&#xD;&#xA;        return ExpressionType.SET_OF_CONTENT;&#xD;&#xA;    } else if ((first.getType() == ExpressionType.AREA) || (first.getType() == ExpressionType.SET_OF_AREA)) {&#xD;&#xA;        return ExpressionType.SET_OF_AREA;&#xD;&#xA;    } else if ((first.getType() == ExpressionType.SOUND) || (first.getType() == ExpressionType.SET_OF_SOUND)) {&#xD;&#xA;        return ExpressionType.SET_OF_SOUND;&#xD;&#xA;    } else if ((first.getType() == ExpressionType.ZONE) || (first.getType() == ExpressionType.SET_OF_ZONE)) {&#xD;&#xA;        return ExpressionType.SET_OF_ZONE;&#xD;&#xA;    } else {&#xD;&#xA;        return first.getType();&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;return null;"/>
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LambdaExpression" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;expressionText.append(&quot;{ &quot;);&#xD;&#xA;expressionText.append(x != null ? x.getName() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; | &quot;);&#xD;&#xA;getLetStatements().forEach(let -> expressionText.append(let));&#xD;&#xA;expressionText.append(bodyText != null ? bodyText.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; }&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.LAMBDA;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//LambdaContext"
+        eOpposite="#//LambdaContext/lambda">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="x" lowerBound="1" eType="#//Variable"
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bodyText" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//RuleObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="&lt;%org.eclipse.emf.ecore.EObject%> container = eContainer();&#xD;&#xA;if(container instanceof &lt;%rba.core.LambdaExpression%>) {&#xD;&#xA;    container = container.eContainer();&#xD;&#xA;    if(container instanceof &lt;%rba.core.LambdaContext%>) {&#xD;&#xA;        &lt;%java.util.List%>&lt;Expression> operands = ((LambdaContext) container).getOperand();&#xD;&#xA;        if (operands.size() > 0) {&#xD;&#xA;            switch (operands.get(0).getUnderlyingType()) {&#xD;&#xA;            case AREA:&#xD;&#xA;            case SET_OF_AREA:&#xD;&#xA;                return ExpressionType.AREA;&#xD;&#xA;            case CONTENT:&#xD;&#xA;            case SET_OF_CONTENT:&#xD;&#xA;                return ExpressionType.CONTENT;&#xD;&#xA;            case SOUND:&#xD;&#xA;            case SET_OF_SOUND:&#xD;&#xA;                return ExpressionType.SOUND;&#xD;&#xA;            case ZONE:&#xD;&#xA;            case SET_OF_ZONE:&#xD;&#xA;                return ExpressionType.ZONE;&#xD;&#xA;            case SCENE:&#xD;&#xA;                return ExpressionType.SCENE;&#xD;&#xA;            case PROPERTY:&#xD;&#xA;                return ExpressionType.PROPERTY;&#xD;&#xA;            case BOOLEAN:&#xD;&#xA;                return ExpressionType.BOOLEAN;&#xD;&#xA;            case LAMBDA:&#xD;&#xA;                return ExpressionType.LAMBDA;&#xD;&#xA;            case VALUE:&#xD;&#xA;            default:&#xD;&#xA;                return ExpressionType.VALUE;&#xD;&#xA;            }&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;} else if (container instanceof &lt;%rba.core.LetStatement%>) {&#xD;&#xA;    &lt;%rba.core.Expression%> body = ((LetStatement) container).getBody();&#xD;&#xA;    if (body != null) {&#xD;&#xA;        return body.getUnderlyingType();&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LambdaContext" abstract="true" eSuperTypes="#//SetOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getContextType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (!getOperand().isEmpty()) {&#xD;&#xA;    rba.core.Expression first = getOperand().get(0);&#xD;&#xA;    if (first.getType() == ExpressionType.SET_OF_CONTENT) {&#xD;&#xA;        return ExpressionType.CONTENT;&#xD;&#xA;    } else if (first.getType() == ExpressionType.SET_OF_AREA) {&#xD;&#xA;        return ExpressionType.AREA;&#xD;&#xA;    } else if (first.getType() == ExpressionType.SET_OF_ZONE) {&#xD;&#xA;        return ExpressionType.ZONE;&#xD;&#xA;    } else if (first.getType() == ExpressionType.SET_OF_SOUND) {&#xD;&#xA;        return ExpressionType.SOUND;&#xD;&#xA;    } else {&#xD;&#xA;        return first.getType();&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lambda" eType="#//LambdaExpression"
+        containment="true" eOpposite="#//LambdaExpression/context">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfStatement" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (thenExpression != null) {&#xD;&#xA;  return thenExpression.getUnderlyingType();&#xD;&#xA;}&#xD;&#xA;return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;expressionText.append(&quot;IF(&quot;);&#xD;&#xA;expressionText.append(condition != null ? condition.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;) THEN &quot;);&#xD;&#xA;expressionText.append(thenExpression != null ? thenExpression.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; ELSE &quot;);&#xD;&#xA;expressionText.append(elseExpression != null ? elseExpression.getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thenExpression" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elseExpression" lowerBound="1"
+        eType="#//Expression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SceneOperator" abstract="true" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsOn" eSuperTypes="#//SceneOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isOn()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllocatableOperator" abstract="true"
+      eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllocatedContent" eSuperTypes="#//AllocatableOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.allocatedContent()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;if (!expressions.isEmpty() &amp;&amp; expressions.get(0) != null) {&#xD;&#xA;    rba.core.Expression first = expressions.get(0);&#xD;&#xA;    if ((first.getType() == ExpressionType.AREA) || (first.getType() == ExpressionType.SET_OF_AREA)) {&#xD;&#xA;        return ExpressionType.CONTENT;&#xD;&#xA;    } else if ((first.getType() == ExpressionType.ZONE) || (first.getType() == ExpressionType.SET_OF_ZONE)) {&#xD;&#xA;        return ExpressionType.SOUND;&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;return ExpressionType.VALUE;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContentValue" eSuperTypes="#//AllocatableOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.contentValue()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GetContentsList" eSuperTypes="#//AllocatableOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.contentsList()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;if (!expressions.isEmpty() &amp;&amp; expressions.get(0) != null) {&#xD;&#xA;  rba.core.Expression first = expressions.get(0);&#xD;&#xA;  if (first.getType() == ExpressionType.AREA) {&#xD;&#xA;    return ExpressionType.SET_OF_CONTENT;&#xD;&#xA;  } else if (first.getType() == ExpressionType.ZONE) {&#xD;&#xA;    return ExpressionType.SET_OF_SOUND;&#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActiveContents" eSuperTypes="#//AllocatableOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.activeContents()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;if (!expressions.isEmpty() &amp;&amp; expressions.get(0) != null) {&#xD;&#xA;  rba.core.Expression first = expressions.get(0);&#xD;&#xA;  if (first.getType() == ExpressionType.AREA) {&#xD;&#xA;    return ExpressionType.SET_OF_CONTENT;&#xD;&#xA;  } else if (first.getType() == ExpressionType.ZONE) {&#xD;&#xA;    return ExpressionType.SET_OF_SOUND;&#xD;&#xA;  }&#xD;&#xA;}&#xD;&#xA;return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyOperator" abstract="true" eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.PROPERTY;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GetProperty" eSuperTypes="#//PropertyOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.get()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.VALUE;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ArbitrationPolicy">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eLiterals name="DEFAULT">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="FIRST_COME_FIRST" value="4">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="LAST_COME_FIRST" value="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="PRIORITY_FIRST_COME_FIRST" value="5">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="PRIORITY_LAST_COME_FIRST" value="6">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ExpressionType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eLiterals name="VALUE"/>
+    <eLiterals name="BOOLEAN" value="1"/>
+    <eLiterals name="AREA" value="2"/>
+    <eLiterals name="CONTENT" value="3"/>
+    <eLiterals name="SET_OF_AREA" value="4"/>
+    <eLiterals name="SET_OF_CONTENT" value="5"/>
+    <eLiterals name="LAMBDA" value="6"/>
+    <eLiterals name="SCENE" value="7"/>
+    <eLiterals name="ZONE" value="8"/>
+    <eLiterals name="SET_OF_ZONE" value="9"/>
+    <eLiterals name="SOUND" value="10"/>
+    <eLiterals name="SET_OF_SOUND" value="11"/>
+    <eLiterals name="PROPERTY" value="14" literal="PROPERTY"/>
+    <eLiterals name="CONTENT_STATE" value="17"/>
+    <eLiterals name="ENUM" value="21" literal="ENUM"/>
+    <eLiterals name="NULL" value="23"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LoserType">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eLiterals name="NEVER_GIVEUP">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="GOOD_LOSER">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="DO_NOT_GIVEUP_UNTIL_WIN">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateValue" eSuperTypes="#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.stateValue()&quot;; //$NON-NLS-1$"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.VALUE;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HasComeLaterThan" eSuperTypes="#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.hasComeLaterThan&quot;; //$NON-NLS-1$"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HasComeEarlierThan" eSuperTypes="#//ContentOperator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.hasComeEarlierThan&quot;; //$NON-NLS-1$"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SugarExpression" abstract="true" interface="true">
+    <eOperations name="canExpand" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value=""/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpanded" eType="#//Expression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="@return Expression that expanded the syntax sugar expression."/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SugarExpressionBase" abstract="true"
+      interface="true" eSuperTypes="#//SugarExpression">
+    <eOperations name="canExpand" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return true;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectCompareNot" eSuperTypes="#//Operator #//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;!=&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot; &quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot; &quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsAllocatedTo" eSuperTypes="#//ContentOperator #//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isAllocatedTo&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsChanged" eSuperTypes="#//AllocatableOperator #//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isChanged()&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsTranslatedTo" eSuperTypes="#//AllocatableOperator #//SugarExpressionBase">
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.isTranslatedTo&quot;;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.BOOLEAN;"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuilder expressionText = new StringBuilder();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;expressionText.append(&quot;(&quot;);&#xD;&#xA;expressionText.append(expressions.size() > 1 ? expressions.get(1).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(&quot;)&quot;);&#xD;&#xA;return expressionText.toString();"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GetState">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;.state()&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContentStateOperator" abstract="true"
+      eSuperTypes="#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value=""/>
+    </eAnnotations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="StringBuffer expressionText = new StringBuffer();&#xD;&#xA;EList&lt;rba.core.Expression> expressions = getOperand();&#xD;&#xA;expressionText.append(expressions.size() > 0 ? expressions.get(0).getExpressionText() : &quot;[Invalid_Expression]&quot;);&#xD;&#xA;expressionText.append(getSymbol());&#xD;&#xA;return expressionText.toString();"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NullExpression" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="NULL keyword"/>
+    </eAnnotations>
+    <eOperations name="getUnderlyingType" eType="#//ExpressionType">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return ExpressionType.NULL;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getExpressionText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return &quot;NULL&quot;;"/>
+        <details key="documentation" value="@Override"/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>
