@@ -94,17 +94,6 @@ Supported version is as followings.
 - Copy rba.tool.editor.endpoint->template to the folder in which 'JSONGenerator_lib' and 'JSONGenerator.jar' is contained.  
 
 ### 7. Usage  
-- If some errors occur, RBAModel.json is not generated (exit code 1).  
-````
-java -cp ./ -jar JSONGenerator.jar "[path to model directory]" "[path to output directory]"
-````
+Refer AGL document site.  
+https://docs.automotivelinux.org/en/master/#5_Component_Documentation/3_rba/
 
-### 8. Example
-- RBAModel.json file is generated in directory same as JSONGenerator.jar  
-````
-java -cp ./ -jar JSONGenerator.jar "./model"
-````
-- RBAModel.json file is generated in ~/ directory
-````
-java -cp ./ -jar JSONGenerator.jar "./model" "~/"
-````
