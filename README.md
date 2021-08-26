@@ -12,13 +12,7 @@ Supported version is as followings.
 #### 2-2. Prepare the source code
     git clone https://git.automotivelinux.org/staging/rba-tool  
 
-#### 2-3. Prepare dependent binaries (z3)
-    cd /path/to/rba-tool/rba.tool.editor.endpoint/lib/linux
-    curl -OL "https://github.com/Z3Prover/z3/releases/download/z3-4.8.4/z3-4.8.4.d6df51951f4c-x64-ubuntu-16.04.zip"
-    unzip z3-4.8.4.d6df51951f4c-x64-ubuntu-16.04.zip -d z3
-    mv z3-4.8.4.d6df51951f4c-x64-ubuntu-16.04 z3
-
-#### 2-4. Boot Eclipse
+#### 2-3. Boot Eclipse
 - Extract the zip, then boot eclipse.  
 
 
